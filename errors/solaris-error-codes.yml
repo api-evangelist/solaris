@@ -1,0 +1,93 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/errors
+docs: https://docs.solarisgroup.com/api-reference/errors
+format: custom-json-errors-array
+note: >-
+  Solaris errors are NOT RFC 9457 problem+json. Responses carry an "errors"
+  array (multiple errors may be returned for one request). Each item has:
+  id (unique error id to quote to support), status (HTTP code), code
+  (machine-readable), title (human-readable), detail, and an optional source
+  object ({ field, message }) pinpointing the offending field.
+envelope:
+  container: errors[]
+  fields: [id, status, code, title, detail, source]
+error_codes:
+  - code: invalid_model
+    status: 400
+    title: Invalid Model
+    detail: A parameter failed validation constraints (blank, too long, etc.).
+  - code: invalid_webhook_url
+    status: 400
+    title: Invalid Webhook URL
+    detail: The provided webhook URL returned a non-200 status during verification.
+  - code: unsafe_webhook_url
+    status: 400
+    title: Unsafe Webhook URL
+    detail: The webhook URL is not HTTPS.
+  - code: validation_error
+    status: 400
+    title: Validation Error
+    detail: General validation failure.
+  - code: type_error
+    status: 400
+    title: Type Error
+    detail: A parameter had the wrong data type (e.g. String instead of Integer).
+  - code: invalid_json
+    status: 400
+    title: Invalid JSON
+    detail: The request body was not properly formatted JSON.
+  - code: invalid_token
+    status: 401
+    title: Invalid Token
+    detail: The access token is expired or malformed.
+  - code: token_required
+    status: 401
+    title: Token Required
+    detail: No Authorization header was provided.
+  - code: unauthorized_partner
+    status: 403
+    title: Unauthorized Partner
+    detail: The partner account is not permitted to access this resource.
+  - code: unauthorized_action
+    status: 403
+    title: Unauthorized Action
+    detail: The token scopes/policies do not allow this HTTP method.
+  - code: authorization_required
+    status: 403
+    title: Authorization Required
+    detail: The action requires a Change Request authorization (SCA).
+  - code: invalid_tan
+    status: 403
+    title: Invalid TAN
+    detail: The SMS OTP or device signature was incorrect.
+  - code: model_not_found
+    status: 404
+    title: Model Not Found
+    detail: The requested resource ID does not exist.
+  - code: record_not_unique
+    status: 409
+    title: Record Not Unique
+    detail: A unique constraint was violated (e.g. mobile number already exists).
+  - code: generic_error
+    status: 500
+    title: Generic Error
+    detail: Internal server error. Retry or contact support.
+  - code: not_implemented_error
+    status: 501
+    title: Not Implemented
+    detail: This endpoint is not yet available.
+  - code: bad_gateway
+    status: 502
+    title: Bad Gateway
+    detail: Upstream error.
+  - code: gateway_timeout
+    status: 504
+    title: Gateway Timeout
+    detail: The request took too long to process.
+support:
+  guidance: >-
+    When reporting an error to Solaris Support include the error id, the
+    endpoint + HTTP method, and the timestamp. Request logs are retained for
+    30 days; payload bodies are not stored.
+  url: https://docs.solarisgroup.com/help

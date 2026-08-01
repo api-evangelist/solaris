@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/authentication
+docs: https://docs.solarisgroup.com/api-reference/authentication
+note: >-
+  Solaris uses OAuth2 client-credentials with a single documented access scope
+  ("partners"). Fine-grained access is not expressed as OAuth scopes but as
+  per-partner "policies" granted by the Solaris Partner Manager per product and
+  use case (see permissions_model in authentication/). This file records the
+  one published OAuth scope; the policy-based permission grants are not
+  self-service and are not enumerated in public docs.
+schemes:
+  - name: OAuth2
+    source: https://docs.solarisgroup.com/api-reference/authentication
+    flows:
+      - flow: clientCredentials
+        tokenUrl: https://auth.solarisbank.de/oauth2/token
+scopes:
+  - scope: partners
+    description: Required scope for standard partner API access.
+    flows: [clientCredentials]
+    sources: [https://docs.solarisgroup.com/api-reference/authentication]

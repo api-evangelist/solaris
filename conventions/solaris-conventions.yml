@@ -1,0 +1,77 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/requests-and-responses
+docs:
+  - https://docs.solarisgroup.com/api-reference/requests-and-responses
+  - https://docs.solarisgroup.com/api-reference/standards
+  - https://docs.solarisgroup.com/api-reference/errors
+authentication:
+  style: oauth2-bearer
+  detail: OAuth2 client-credentials bearer token; see authentication/solaris-authentication.yml
+idempotency:
+  request_idempotency_key: false
+  note: >-
+    Solaris does not document a request-level Idempotency-Key header for its
+    REST write operations. Idempotency support is on the webhook consumer side:
+    each webhook notification carries a unique Solaris-Webhook-Id header that
+    integrators use for idempotency/dedup checks. Because there is no
+    provider-side idempotency-key contract for API writes, no Idempotency
+    rating pointer is emitted.
+pagination:
+  style: page-number
+  params:
+    number: page[number]     # default 1
+    size: page[size]         # default 10, max 1000
+  response_headers: [total, per-page, link]  # link per RFC 5988 (first/last/prev/next)
+sorting:
+  param: sort
+  ascending: sort={property}
+  descending: sort=-{property}
+  example: GET /v1/accounts/bookings?sort=-recorded_at
+request_rules:
+  no_leading_or_trailing_whitespace: true
+  null_values_ignored: true            # PATCH with null is a no-op, not a delete
+  case_sensitive: true                 # including enum values
+  unknown_params_ignored: true         # sanitized rather than rejected
+money_object:
+  note: Monetary amounts never use floats; a structured Money object is used.
+  fields:
+    value: integer (smallest unit, e.g. cents)
+    unit: string (currently only "cents")
+    currency: string (currently only "EUR")
+    precision: integer (optional decimal precision)
+data_formats:
+  country_codes: ISO 3166-1 alpha-2
+  currency_codes: ISO 4217
+  state_codes: ISO 3166-2 (Germany)
+  datetime: ISO 8601
+  phone_numbers: E.164
+  character_encoding: UTF-8 (KYC/customer-data fields restricted to Latin characters)
+  sepa_character_set: EPC217-08 restricted set enforced on SEPA fields
+  sepa_return_codes: EPC173-14
+  merchant_category_codes: Visa/Mastercard MCC
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: Endpoints are namespaced under /v1/ (e.g. /v1/webhooks, /v1/transactions).
+error_envelope:
+  shape: '{ "errors": [ { id, status, code, title, detail, source } ] }'
+  multiple_errors: true
+  detail: See errors/solaris-error-codes.yml
+rate_limiting:
+  concurrency_max: 255          # concurrent API calls per partner
+  sms_max_per_recipient_per_hour: 60
+  detail: See rate-limits documentation; no per-endpoint quota headers documented.
+timeouts:
+  api_idle_timeout_seconds: 150
+  retry_guidance: >-
+    Only retry after the timeout expires or after a definitive error response.
+request_tracing:
+  error_id: Every error response carries a unique "id" to quote to Solaris Support.
+  log_retention_days: 30
+  note: Solaris does not store request payload bodies in logs (security).
+cross_links:
+  authentication: authentication/solaris-authentication.yml
+  errors: errors/solaris-error-codes.yml
+  lifecycle: lifecycle/solaris-lifecycle.yml
+  webhooks: asyncapi/solaris-webhooks.yml

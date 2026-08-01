@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: https://docs.solarisgroup.com/api-reference
+note: >-
+  No official hosted/remote Solaris MCP server was found. This is a CANDIDATE
+  tool list derived from operations documented in the Solaris API reference
+  (Solaris does not publish a single downloadable OpenAPI file; the reference
+  is generated from OpenAPI and rendered per-product). Only endpoints
+  explicitly documented in the reference/guides are listed — not fabricated.
+server:
+  name: solaris
+  transport: http
+  base_url: https://api.solarisbank.de
+  auth: OAuth2 client-credentials bearer token (scope=partners)
+tools:
+  - name: create_webhook_subscription
+    description: Subscribe to a Solaris webhook event type at an HTTPS callback URL.
+    source_operation: POST /v1/webhooks
+  - name: list_transactions
+    description: List account transactions (supports page[number]/page[size] pagination and sort).
+    source_operation: GET /v1/transactions
+  - name: list_account_bookings
+    description: List account bookings, sortable by recorded_at.
+    source_operation: GET /v1/accounts/bookings

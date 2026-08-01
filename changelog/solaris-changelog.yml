@@ -1,0 +1,14 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/release-notes
+url: https://docs.solarisgroup.com/release-notes
+scheme: dated-release-notes
+current_version: v1
+note: >-
+  Solaris publishes a dated "Release notes" page in its developer hub covering
+  API and platform changes. The live page is the source of truth; individual
+  dated entries were not machine-extractable into this artifact (the page is a
+  rendered app view, not a static feed). The breaking-changes policy governs
+  how changes are classified and announced (see lifecycle/).
+entries: []
+policy: https://docs.solarisgroup.com/api-reference/breaking-changes

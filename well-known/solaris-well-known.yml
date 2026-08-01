@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+note: >-
+  Probed /.well-known/ discovery endpoints on the API, docs and corporate
+  hosts. The Solaris API host requires a bearer token for all paths, so its
+  /.well-known/ endpoints return 401 (auth-gated, not public). No public
+  security.txt, OpenID discovery, OAuth AS metadata, or api-catalog document
+  was served. Absence/gating is valid recorded data.
+hosts:
+  - host: https://api.solarisbank.de
+    documents:
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+  - host: https://docs.solarisgroup.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://www.solarisgroup.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://solarisgroup.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301   # redirects to a Gatsby 404, no security.txt served

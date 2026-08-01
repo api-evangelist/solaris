@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/guides/get-started/technical-setup
+docs: https://docs.solarisgroup.com/guides/get-started/technical-setup
+environments:
+  sandbox:
+    api_base_url: https://api.solaris-sandbox.de
+    auth_base_url: https://auth.solaris-sandbox.de
+    token_endpoint: https://auth.solaris-sandbox.de/oauth2/token
+    access_note: >-
+      Sandbox is a test environment for verifying integrations. Contact your
+      Partner Manager before testing on Sandbox (access is gated).
+  production:
+    api_base_url: https://api.solarisbank.de
+    auth_base_url: https://auth.solarisbank.de
+    token_endpoint: https://auth.solarisbank.de/oauth2/token
+credentials:
+  model: partner-issued
+  note: >-
+    Solaris issues client_id / client_secret to onboarded partners; there are
+    no public self-service or "magic" test credentials. Sandbox access and
+    permissions (policies) are granted per partner by the Partner Manager.
+psd2_xs2a_sandbox: https://xs2a-portal.solaris-sandbox.de/
+test_values_published: false

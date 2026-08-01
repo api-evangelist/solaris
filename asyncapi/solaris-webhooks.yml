@@ -1,0 +1,139 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/webhooks
+spec_type: Webhooks
+docs: https://docs.solarisgroup.com/api-reference/webhooks
+note: >-
+  Solaris documents a webhook event surface but publishes no AsyncAPI document.
+  This artifact captures the webhook catalog (type: Webhooks). Solaris delivers
+  events as HTTPS POST callbacks; there is no streaming/AsyncAPI transport.
+transport:
+  mechanism: https-post-callback
+  subscription_endpoint: POST /v1/webhooks
+  subscribe_per_event_type: true
+  base_url: https://api.solarisbank.de
+delivery:
+  expected_response_within_seconds: 30
+  response_codes:
+    2xx: delivered
+    410: subscription cancelled automatically
+    422: rejected, not retried
+    other: enters retry loop
+  retries:
+    max_attempts: 25
+    backoff_rate: 1.561
+    total_duration: ~5 days
+    note: >-
+      The api-reference/webhooks page states max 25 attempts over ~5 days;
+      the guides/get-started/technical-setup page states 20 retries over 7 days.
+      Values recorded as published; api-reference treated as authoritative.
+security:
+  signature_header: Solaris-Webhook-Signature
+  algorithm: HMAC-SHA256
+  signature_prefix: 'sha256='
+  secret: Returned once at subscription creation; used as the HMAC key over the raw body.
+  replay_protection_header: Solaris-Webhook-Callout-Timestamp
+headers:
+  - Content-Type
+  - Solaris-Webhook-Id            # unique notification id (idempotency/dedup)
+  - Solaris-Webhook-Subscription-Id
+  - Solaris-Webhook-Event-Type
+  - Solaris-Entity-Id
+  - Solaris-Webhook-Attempt
+  - Solaris-Webhook-Signature
+  - Solaris-Webhook-Callout-Timestamp
+  - User-Agent
+mandatory_compliance_events:
+  - ACCOUNT_CLOSURE_REQUEST
+  - BUSINESS_DELETED
+  - BUSINESS_SEIZURE_CREATED
+  - BUSINESS_SEIZURE_DELETED
+  - BUSINESS_SEIZURE_FULFILLED
+  - BUSINESS_SEIZURE_UPDATED
+  - PERSON_DELETED
+  - PERSON_SEIZURE_CREATED
+  - PERSON_SEIZURE_DELETED
+  - PERSON_SEIZURE_FULFILLED
+  - PERSON_SEIZURE_UPDATED
+  - POSTBOX_ITEM_CREATED
+events:
+  - ACCOUNT_BLOCK
+  - ACCOUNT_CLOSURE
+  - ACCOUNT_CLOSURE_REQUEST
+  - ACCOUNT_LIMIT_CHANGE
+  - ACCOUNT_OPENING_REQUEST
+  - ACCOUNT_SNAPSHOT
+  - ACQUIRER_TOPUP_DECLINED
+  - ACQUIRER_TOPUP_EXECUTED
+  - ACQUIRER_TOPUP_PAYMENT_FAILED
+  - ACTIVATION_CHALLENGE_CREATION
+  - BENEFICIAL_OWNER
+  - BOOKING
+  - BUSINESS_CHANGED
+  - BUSINESS_DELETED
+  - BUSINESS_FRONTING_APPLICATION
+  - BUSINESS_FRONTING_LOAN_PAYOUT
+  - BUSINESS_FRONTING_PAYOUT_UPDATE
+  - BUSINESS_FRONTING_RELATIONSHIP_STATUS_CHANGED
+  - BUSINESS_IDENTIFICATION
+  - BUSINESS_SEIZURE_CREATED
+  - BUSINESS_SEIZURE_DELETED
+  - BUSINESS_SEIZURE_FULFILLED
+  - BUSINESS_SEIZURE_UPDATED
+  - BUSINESS_TAX_IDENTIFICATION_CHANGED
+  - CARD_AUTHORIZATION
+  - CARD_AUTHORIZATION_DECLINE_V2
+  - CARD_AUTHORIZATION_RESOLUTION
+  - CARD_DELIVERY_TRACKING
+  - CARD_FRAUD_CASE_PENDING
+  - CARD_FRAUD_CASE_TIMEOUT
+  - CARD_LIFECYCLE_EVENT
+  - CARD_TOKEN_LIFECYCLE
+  - CASH_OPERATION_STATUS_CHANGED
+  - CONSUMER_FRONTING_APPLICATION
+  - CONSUMER_LOAN_APPLICATION
+  - CONSUMER_OVERDRAFT
+  - CONSUMER_OVERDRAFT_APPLICATION
+  - CONSUMER_OVERDRAFT_INTEREST_RATE_CHANGE
+  - CREDIT_CARD_APPLICATION
+  - CREDIT_LINE
+  - DELEGATE_SCA_CANCEL
+  - DISPUTE_CHANGED
+  - FREELANCER_CREDIT_LINE_APPLICATION
+  - FREELANCER_OVERDRAFT_INTEREST_RATE_CHANGE
+  - IDENTIFICATION
+  - IDENTIFICATION_ORIGINATION
+  - IDENTIFICATION_SESSION
+  - INCOMING_REJECTED_TRANSACTION
+  - INSTANT_SEPA_CREDIT_TRANSFER_EXECUTED
+  - INSTANT_SEPA_CREDIT_TRANSFER_FAILED
+  - LEGAL_REPRESENTATIVE
+  - LOAN
+  - OVERDRAFT
+  - OVERDRAFT_APPLICATION
+  - OVERDRAFT_LIMIT_CHANGE
+  - PERSON_CHANGED
+  - PERSON_DELETED
+  - PERSON_MOBILE_NUMBER_CREATED
+  - PERSON_MOBILE_NUMBER_DELETED
+  - PERSON_SEIZURE_CREATED
+  - PERSON_SEIZURE_DELETED
+  - PERSON_SEIZURE_FULFILLED
+  - PERSON_SEIZURE_UPDATED
+  - PERSON_TAX_IDENTIFICATION_CHANGED
+  - POSTBOX_ITEM_CREATED
+  - POTENTIAL_ACCOUNT_BLOCKING
+  - QUESTIONS_REQUIRE_RESPONSE
+  - REFERENCE_ACCOUNT_CREATED
+  - REFERENCE_ACCOUNT_INSTANT_PAYOUT_DECLINED
+  - REFERENCE_ACCOUNT_INSTANT_PAYOUT_EXECUTED
+  - RESERVATION_CREATED
+  - RESERVATION_RESOLVED
+  - SCA_CHALLENGE
+  - SCHEDULED_TRANSFER_STATUS_CHANGED
+  - SEPA_CREDIT_TRANSACTION_DECLINED
+  - SEPA_DIRECT_DEBIT_RETURN
+  - SEPA_SCHEDULED_TRANSACTION
+  - SEPA_STANDING_ORDER
+  - SEPA_TIMED_ORDER
+  - TRUSTED_IBAN_CONFIRMED

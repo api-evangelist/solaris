@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/authentication
+docs: https://docs.solarisgroup.com/api-reference/authentication
+summary:
+  types: [oauth2]
+  oauth2_flows: [clientCredentials]
+  token_type: bearer
+  token_ttl_seconds: 3600
+  credential_transport: http-basic-base64
+schemes:
+  - name: OAuth2
+    type: oauth2
+    description: >-
+      Solaris uses OAuth2 client-credentials. Base64-encode
+      "client_id:client_secret" and send it as an HTTP Basic Authorization
+      header to the token endpoint with grant_type=client_credentials and
+      scope=partners. The endpoint returns a short-lived (1 hour / 3600s)
+      bearer access_token that must be sent as "Authorization: Bearer {token}"
+      on every subsequent API request. A 401 Unauthorized indicates an expired
+      or malformed token; the client must fetch a new token and retry.
+    flows:
+      - flow: clientCredentials
+        tokenUrl_sandbox: https://auth.solaris-sandbox.de/oauth2/token
+        tokenUrl_production: https://auth.solarisbank.de/oauth2/token
+        grant_type: client_credentials
+        scopes:
+          partners: Standard API access scope required for partner API calls.
+    sources: [https://docs.solarisgroup.com/api-reference/authentication]
+permissions_model: >-
+  Beyond the OAuth scope, per-endpoint access is governed by policies granted
+  to each partner by their Solaris Partner Manager based on the products they
+  implement (a token only unlocks the API actions the partner is permitted to
+  use).
+legacy:
+  endpoint: POST /oauth/token
+  status: deprecated
+  note: >-
+    The legacy /oauth/token endpoint (JSON client_id/client_secret body) is
+    deprecated; new integrations must use the OAuth2 token endpoints above.
+customer_authentication:
+  - name: Device binding
+    detail: Links a physical device to a customer account via SMS OTP or Activation Code (QR); prerequisite for SCA.
+  - name: Strong Customer Authentication (SCA)
+    detail: PSD2-mandated two-factor authorization for sensitive actions across the EEA.
+  - name: 3D Secure (3DS)
+    detail: Extra authentication layer for online card payments via SMS OTP or in-app notification.
+  - name: PSD2 SCA flow (TPP)
+    detail: Split authentication where the partner handles 1FA and Solaris handles 2FA via OTP.

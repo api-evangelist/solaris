@@ -1,24 +1,126 @@
 aid: solaris
 name: Solaris
-description: 'Solaris is a company surfaced as a portfolio company of hv-capital and added to the API
-  Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Solaris SE is a Berlin-based embedded-finance / Banking-as-a-Service platform
+  operating on a full German CRR commercial banking license. Its REST API lets
+  partners embed regulated banking into their own products: digital banking with
+  local German IBANs and SEPA credit transfers, direct debit and instant
+  payments; debit and credit cards with 3D Secure, tokenization and spending
+  controls; KYC/KYB identity verification (Bankident, VideoIdent, AutoIdent,
+  Fourthline); and lending products including overdrafts, Splitpay and consumer
+  and business loans. The API uses OAuth2 client-credentials bearer tokens,
+  HMAC-SHA256-signed webhooks for ~80 real-time events, page-number pagination,
+  and a structured Money object, and is certified under ISO/IEC 27001,
+  PCI DSS 4.0, DORA and GDPR.
 url: https://raw.githubusercontent.com/api-evangelist/solaris/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://docs.solarisgroup.com/static/solaris-signet-e6f33da6ebaffa690232d6cc1f63ee39.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - hv-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: portfolio-lead-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Fintech
-apis: []
+- Banking
+- Banking as a Service
+- Embedded Finance
+- Payments
+- SEPA
+- Cards
+- KYC
+- Lending
+- Compliance
+- OAuth2
+- Webhooks
+- Germany
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Solaris Embedded Finance API
+  description: >-
+    The Solaris REST API for embedded banking, cards, payments (SEPA), KYC/KYB
+    identity, and lending. OAuth2 client-credentials auth; HMAC-signed webhooks.
+  humanURL: https://docs.solarisgroup.com/api-reference
+  baseURL: https://api.solarisbank.de
+  properties:
+  - type: Authentication
+    url: authentication/solaris-authentication.yml
+  - type: OAuthScopes
+    url: scopes/solaris-scopes.yml
+common:
+- type: DomainSecurity
+  url: security/solaris-domain-security.yml
+- type: Website
+  url: https://www.solarisgroup.com/
+- type: DeveloperPortal
+  url: https://docs.solarisgroup.com/
+- type: Documentation
+  url: https://docs.solarisgroup.com/guides
+- type: APIReference
+  url: https://docs.solarisgroup.com/api-reference
+- type: GettingStarted
+  url: https://docs.solarisgroup.com/guides/get-started
+- type: Support
+  url: https://docs.solarisgroup.com/help
+- type: StatusPage
+  url: https://status.solarisgroup.com/
+- type: Deprecation
+  url: https://docs.solarisgroup.com/api-reference/breaking-changes
+- type: Compliance
+  url: https://www.solarisgroup.com/en/license/
+- type: PrivacyPolicy
+  url: https://www.solarisgroup.com/en/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/solarisBank
+- type: ChangeLog
+  url: https://docs.solarisgroup.com/release-notes
+- type: ChangeLog
+  url: changelog/solaris-changelog.yml
+  name: Solaris changelog artifact
+- type: Authentication
+  url: authentication/solaris-authentication.yml
+- type: OAuthScopes
+  url: scopes/solaris-scopes.yml
+- type: Conventions
+  url: conventions/solaris-conventions.yml
+- type: ErrorCatalog
+  url: errors/solaris-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/solaris-lifecycle.yml
+- type: Conformance
+  url: conformance/solaris-conformance.yml
+- type: Webhooks
+  url: asyncapi/solaris-webhooks.yml
+- type: Sandbox
+  url: sandbox/solaris-sandbox.yml
+- type: MCPServer
+  url: mcp/solaris-mcp.yml
+- type: WellKnown
+  url: well-known/solaris-well-known.yml
+- type: LLMsTxt
+  url: llms/solaris-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

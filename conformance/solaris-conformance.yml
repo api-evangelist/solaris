@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/standards
+docs:
+  - https://docs.solarisgroup.com/api-reference/standards
+  - https://www.solarisgroup.com/en/license/
+standards:
+  - id: oauth2-client-credentials
+    conforms: true
+    evidence: OAuth2 client-credentials flow documented for API access.
+  - id: psd2-sca
+    conforms: true
+    evidence: PSD2 Strong Customer Authentication + XS2A (TPP) flows documented; EBA/PSD2 referenced.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom "errors[]" JSON envelope, not application/problem+json.
+  - id: rfc5988-web-linking
+    conforms: true
+    evidence: Paginated responses use the RFC 5988 "link" header (first/last/prev/next).
+  - id: iso-27001
+    conforms: true
+    evidence: Solaris certified for ISO/IEC 27001 information security management.
+  - id: pci-dss-4.0
+    conforms: true
+    evidence: Fully certified under PCI DSS 4.0.
+  - id: dora
+    conforms: true
+    evidence: Complies with the EU Digital Operational Resilience Act (DORA).
+  - id: gdpr
+    conforms: true
+    evidence: Fully compliant with EU GDPR data protection regulations.
+  - id: crr-banking-license
+    conforms: true
+    evidence: Operates with a full German CRR commercial banking license (BaFin regulated).
+  - id: sepa
+    conforms: true
+    evidence: SEPA SCT/SDD/Instant transfers; EPC217-08 character set and EPC173-14 return codes enforced.
+  - id: iso-8601
+    conforms: true
+    evidence: Dates/times use ISO 8601.
+  - id: iso-4217
+    conforms: true
+    evidence: Currency codes use ISO 4217 (EUR).
+compliance_program:
+  url: https://www.solarisgroup.com/en/license/
+  certifications: [ISO/IEC 27001, PCI DSS 4.0, DORA, GDPR, CRR Banking License]

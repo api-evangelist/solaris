@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.solarisgroup.com/api-reference/breaking-changes
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.solarisgroup.com/api-reference/requests-and-responses
+deprecation:
+  policy_url: https://docs.solarisgroup.com/api-reference/breaking-changes
+  advance_notice: true
+  detail: >-
+    Solaris always announces breaking changes in advance and provides a
+    deprecation period before they take effect. Breaking changes include
+    removal or renaming of resources/endpoints/parameters, type changes,
+    stricter validation (making an optional param mandatory), and removing
+    enum values. Non-breaking changes (new endpoints, new optional params,
+    new response fields, field re-ordering, relaxed validation, added enum
+    values) ship without advance notice; integrators must follow the
+    Tolerant Reader pattern.
+  known_deprecations:
+    - endpoint: POST /oauth/token
+      note: Legacy auth endpoint deprecated in favor of OAuth2 /oauth2/token.
+status_page: https://status.solarisgroup.com/
+change_log: https://docs.solarisgroup.com/release-notes
+support: https://docs.solarisgroup.com/help
