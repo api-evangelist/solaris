@@ -13,6 +13,17 @@ description: >-
   and a structured Money object, and is certified under ISO/IEC 27001,
   PCI DSS 4.0, DORA and GDPR.
 url: https://raw.githubusercontent.com/api-evangelist/solaris/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
